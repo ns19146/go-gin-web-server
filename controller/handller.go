@@ -9,7 +9,7 @@ import (
 )
 
 func dbInit() *gorm.DB {
-	dsn := "host=dpg-chdin0bhp8u3v70u25og-a port=5432 user=nittc2023_j5exp_g2 dbname=nittc2023_j5exp_g2 password=uEeRkwJRnQufgEbbF3EFnrJUm0BDJRzP"
+	dsn := "host=dpg-chdin0bhp8u3v70u25og-a.singapore-postgres.render.com port=5432 user=nittc2023_j5exp_g2 dbname=nittc2023_j5exp_g2 password=uEeRkwJRnQufgEbbF3EFnrJUm0BDJRzP"
 	db, err := gorm.Open("postgres", dsn)
 	if err != nil {
 		panic("failed to connect database")

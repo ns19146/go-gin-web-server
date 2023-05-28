@@ -6,7 +6,7 @@ import (
 
 func StartWebServer() {
 	r := gin.Default()
-	r.GET("/", test)
+	r.POST("/insert", test)
 
 	r.Run()
 }
