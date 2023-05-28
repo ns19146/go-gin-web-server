@@ -3,14 +3,12 @@ package model
 import "time"
 
 type Score struct {
-	Number    Playerinf `gorm:"primary_key" json:"number"`
-	Gamename  Gameinf   `gorm:"primary_key" json:"gamename"`
-	Dist      string    `gorm:"type:varchar(10); primary_key" json:"dist"`
-	Xring     int       `json:"xring"`
-	Set       int       `gorm:"primary_key" json:"set"`
-	SetScore  int       `json:"setscore"`
-	Distscore int       `json:"distscore"`
-	Total     int       `json:"total"`
+	Dist      string `gorm:"type:varchar(10); primary_key" json:"dist"`
+	Xring     int    `json:"xring"`
+	Set       int    `gorm:"primary_key" json:"set"`
+	SetScore  int    `json:"setscore"`
+	Distscore int    `json:"distscore"`
+	Total     int    `json:"total"`
 }
 
 type Gameinf struct {
@@ -20,10 +18,9 @@ type Gameinf struct {
 }
 
 type Playerinf struct {
-	Name     string  `gorm:"type:varchar(20)" json:"name"`
-	Age      int     `json:"age"`
-	Gen      string  `gorm:"type:varchar(10)" json:"gen"`
-	Team     string  `gorm:"type:varchar(20)" json:"team"`
-	Number   string  `gorm:"type:varchar(10); primary_key" json:"number"`
-	Gamename Gameinf `gorm:"primary_key" json:"gamename"`
+	Name   string `gorm:"type:varchar(20)" json:"name"`
+	Age    int    `json:"age"`
+	Gen    string `gorm:"type:varchar(10)" json:"gen"`
+	Team   string `gorm:"type:varchar(20)" json:"team"`
+	Number string `gorm:"type:varchar(10); primary_key" json:"number"`
 }

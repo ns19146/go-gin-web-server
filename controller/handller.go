@@ -25,7 +25,10 @@ func CreateTable(_ *gin.Context) {
 	db := dbInit()
 	db.CreateTable(&game)
 	db.CreateTable(&player)
+	db.Model(&player).AddForeignKey("gamename", "gameinfs(gamename)", "RESTRICT", "RESTRICT")
 	db.CreateTable(&score)
+	db.Model(&score).AddForeignKey("gamename", "gameinfs(gamename)", "RESTRICT", "RESTRICT")
+	db.Model(&score).AddForeignKey("number", "playerinf(number)", "RESTRICT", "RESTRICT")
 }
 
 func test(c *gin.Context) {
