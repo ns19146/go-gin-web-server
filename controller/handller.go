@@ -20,14 +20,14 @@ func dbInit() *gorm.DB {
 }
 
 func CreateTable(_ *gin.Context) {
-	var model models.TestModel
+	var model models.Score
 	db := dbInit()
 	fmt.Println("Connect Success!")
 	db.CreateTable(&model)
 }
 
 func test(c *gin.Context) {
-	var model models.TestModel
+	var model models.Score
 	db := dbInit()
 	if err := c.ShouldBindJSON(&model); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
