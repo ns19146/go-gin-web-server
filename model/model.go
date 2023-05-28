@@ -3,7 +3,7 @@ package model
 import "time"
 
 type Score struct {
-	Gamename  string `gorm:"type:varchar(30) primary_key" json:"gamename"`
+	Gamename  string `gorm:"type:varchar(30); primary_key" json:"gamename"`
 	Number    string `gorm:"type:varchar(10); primary_key" json:"number"`
 	Dist      string `gorm:"type:varchar(10); primary_key" json:"dist"`
 	Xring     int    `json:"xring"`
@@ -25,5 +25,5 @@ type Playerinf struct {
 	Gen      string `gorm:"type:varchar(10)" json:"gen"`
 	Team     string `gorm:"type:varchar(20)" json:"team"`
 	Number   string `gorm:"type:varchar(10); primary_key" json:"number"`
-	Gamename string `gorm:"type:varchar(30) primary_key" json:"gamename"`
+	Gamename string `gorm:"type:varchar(30); primary_key" json:"gamename"`
 }
