@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -16,6 +17,13 @@ func dbInit() *gorm.DB {
 	}
 
 	return db
+}
+
+func CreateTable(_ *gin.Context) {
+	var model models.TestModel
+	db := dbInit()
+	fmt.Println("Connect Success!")
+	db.CreateTable(&model)
 }
 
 func test(c *gin.Context) {
