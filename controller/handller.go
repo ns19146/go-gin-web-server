@@ -14,6 +14,7 @@ func dbInit() *gorm.DB {
 	if err != nil {
 		panic("failed to connect database")
 	}
+	db.SingularTable(true)
 
 	return db
 }
