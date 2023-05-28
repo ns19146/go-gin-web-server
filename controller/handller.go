@@ -1,11 +1,10 @@
 package controller
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/render-examples/go-gin-web-server/models"
+	"github.com/render-examples/go-gin-web-server/model"
 	"net/http"
 )
 
@@ -20,14 +19,17 @@ func dbInit() *gorm.DB {
 }
 
 func CreateTable(_ *gin.Context) {
-	var model models.Score
+	var game model.Gameinf
+	var player model.Playerinf
+	var score model.Score
 	db := dbInit()
-	fmt.Println("Connect Success!")
-	db.CreateTable(&model)
+	db.CreateTable(&game)
+	db.CreateTable(&player)
+	db.CreateTable(&score)
 }
 
 func test(c *gin.Context) {
-	var model models.Score
+	var model model.Score
 	db := dbInit()
 	if err := c.ShouldBindJSON(&model); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{

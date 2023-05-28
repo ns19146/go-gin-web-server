@@ -1,0 +1,29 @@
+package model
+
+import "time"
+
+type Score struct {
+	Number    Playerinf `gorm:"primary_key" json:"number"`
+	Gamename  Gameinf   `gorm:"primary_key" json:"gamename"`
+	Dist      string    `gorm:"type:varchar(10); primary_key" json:"dist"`
+	Xring     int       `json:"xring"`
+	Set       int       `gorm:"primary_key" json:"set"`
+	SetScore  int       `json:"setscore"`
+	Distscore int       `json:"setscore"`
+	Total     int       `json:"total"`
+}
+
+type Gameinf struct {
+	Gamename string    `gorm:"type:varchar(30); primary_key" json:"gamename"`
+	Date     time.Time `json:"date"`
+	Locate   string    `gorm:"type:varchar(20)" json:"locate"`
+}
+
+type Playerinf struct {
+	Name     string  `gorm:"type:varchar(20)" json:"name"`
+	Age      int     `json:"age"`
+	Gen      string  `gorm:"type:varchar(10)" json:"gen"`
+	Team     string  `gorm:"type:varchar(20)" json:"team"`
+	Number   string  `gorm:"type:varchar(10); primary_key" json:"number"`
+	Gamename Gameinf `gorm:"primary_key" json:"gamename"`
+}
