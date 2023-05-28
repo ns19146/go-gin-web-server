@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./app/controller"
+	"github.com/render-examples/go-gin-web-server/controller"
 )
 
 func main() {
