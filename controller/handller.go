@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -38,6 +39,7 @@ func ShowTables(c *gin.Context) {
 	var score []model.Score
 	db := dbInit()
 	db.Find(&game)
+	fmt.Println(game[0].Gamename)
 	db.Find(&player)
 	db.Find(&score)
 	c.HTML(http.StatusOK, "show.html", gin.H{
