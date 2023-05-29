@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<HTML>
+    <h2>Gameinf</h2>
+    <ul>
+        <li>GameName | Date | Location</li>
+        {{range .game}}
+        <li>{{.Gamename | .Date | .Locate}}</li>
+        {{end}
+    </ul>
+
+    <h2>PlayerInf</h2>
+    <ul>
+        <li>Name | Age | Gender | Team | Number | GameName</li>
+        {{range .player}}
+        <li>{{.Name | .Age | .Gen | .Team | .Number | .Gamename}}</li>
+        {{end}}
+    </ul>
+
+    <h2>Score</h2>
+    <ul>
+        <li>GameName | Number | Distance | XRing | Set | SetScore | DistScore | Total</li>
+        {{range .score}}
+        <li>{{.Gamename | .Number | .Dist | .Xring | .Set | .SetScore | .DistScore | .Total}}</li>
+    </ul>
+</HTML>

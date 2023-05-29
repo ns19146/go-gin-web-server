@@ -9,7 +9,7 @@ type Score struct {
 	Xring     int    `json:"xring"`
 	Set       int    `gorm:"primary_key" json:"set"`
 	SetScore  int    `json:"setscore"`
-	Distscore int    `json:"distscore"`
+	DistScore int    `json:"distscore"`
 	Total     int    `json:"total"`
 }
 
