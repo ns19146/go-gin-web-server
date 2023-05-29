@@ -6,6 +6,7 @@ import (
 
 func StartWebServer() {
 	r := gin.Default()
+	r.LoadHTMLGlob("templates/*.html")
 	r.POST("/insert", test)
 	r.GET("/create", CreateTable)
 	r.GET("/show", ShowTables)
