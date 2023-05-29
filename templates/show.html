@@ -1,11 +1,10 @@
-<!DOCTYPE HTML>
 <HTML>
-    <h2>Gameinf</h2>
+    <h2>GameInf</h2>
     <ul>
         <li>GameName | Date | Location</li>
         {{range .game}}
         <li>{{.Gamename | .Date | .Locate}}</li>
-        {{end}
+        {{end}}
     </ul>
 
     <h2>PlayerInf</h2>
@@ -21,5 +20,6 @@
         <li>GameName | Number | Distance | XRing | Set | SetScore | DistScore | Total</li>
         {{range .score}}
         <li>{{.Gamename | .Number | .Dist | .Xring | .Set | .SetScore | .DistScore | .Total}}</li>
+        {{end}}
     </ul>
 </HTML>
