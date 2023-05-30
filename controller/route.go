@@ -10,5 +10,7 @@ func StartWebServer() {
 	r.POST("/insert", test)
 	r.GET("/create", CreateTable)
 	r.GET("/show", ShowTables)
+	r.GET("/upload", UploadCsv)
+	r.POST("/upload", OpenCsv)
 	r.Run()
 }

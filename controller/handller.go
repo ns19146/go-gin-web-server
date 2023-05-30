@@ -6,6 +6,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/render-examples/go-gin-web-server/model"
+	"log"
 	"net/http"
 )
 
@@ -59,4 +60,15 @@ func test(c *gin.Context) {
 	}
 
 	db.Create(&model)
+}
+
+func UploadCsv(c *gin.Context) {
+	c.HTML(http.StatusOK, "upload.html", nil)
+}
+
+func OpenCsv(c *gin.Context) {
+	log.Println("called")
+	file, _ := c.FormFile("file")
+	log.Println(file.Filename)
+	c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 }
