@@ -4,13 +4,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func StartWebServer() {
+func StartWebServer() *gin.Engine {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*.html")
-	r.POST("/insert", test)
+	r.POST("/insert", InsertTable)
 	r.GET("/create", CreateTable)
 	r.GET("/show", ShowTables)
 	r.GET("/upload", UploadCsv)
 	r.POST("/upload", OpenCsv)
-	r.Run()
+
+	return r
 }

@@ -5,5 +5,6 @@ import (
 )
 
 func main() {
-	controller.StartWebServer()
+	r := controller.StartWebServer()
+	r.Run()
 }

@@ -1,13 +1,16 @@
 package controller
 
 import (
+	"encoding/csv"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/render-examples/go-gin-web-server/model"
+	"io"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 func dbInit() *gorm.DB {
@@ -18,6 +21,9 @@ func dbInit() *gorm.DB {
 	}
 	db.SingularTable(true)
 
+	db.AutoMigrate(
+		&model.TestModel{},
+	)
 	return db
 }
 
@@ -50,7 +56,7 @@ func ShowTables(c *gin.Context) {
 	})
 }
 
-func test(c *gin.Context) {
+func InsertTable(c *gin.Context) {
 	var model model.Score
 	db := dbInit()
 	if err := c.ShouldBindJSON(&model); err != nil {
@@ -58,7 +64,6 @@ func test(c *gin.Context) {
 			"error": err.Error()})
 		return
 	}
-
 	db.Create(&model)
 }
 
@@ -67,8 +72,37 @@ func UploadCsv(c *gin.Context) {
 }
 
 func OpenCsv(c *gin.Context) {
-	log.Println("called")
-	file, _ := c.FormFile("file")
-	log.Println(file.Filename)
-	c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
+	file, _, err := c.Request.FormFile("file")
+	reader := csv.NewReader(file)
+	reader.LazyQuotes = true
+
+	var line []string
+	for {
+		var model model.TestModel
+		line, err = reader.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatal(err)
+		}
+		id, _ := strconv.Atoi(line[0])
+		if id != 0 {
+			log.Println(line)
+			model.Id = id
+			model.Name = line[1]
+			model.Gen = line[2]
+			model.Team = line[3]
+		}
+		db := dbInit()
+		db.Save(&model)
+	}
+	defer c.Redirect(http.StatusSeeOther, "https://nittc2023-j5exp-g2-2pkv.onrender.com/")
 }
+
+/*
+	ReadAllを用いる場合
+	for _, fields := range line {
+		fmt.Println(fields)
+	}
+*/

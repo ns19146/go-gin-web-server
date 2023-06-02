@@ -27,3 +27,10 @@ type Playerinf struct {
 	Number   string `gorm:"type:varchar(10); primary_key" json:"number"`
 	Gamename string `gorm:"type:varchar(30); primary_key" json:"gamename"`
 }
+
+type TestModel struct {
+	Id   int    `json:"id"`
+	Name string `json:"name"`
+	Gen  string `json:"gen"`
+	Team string `json:"team"`
+}
