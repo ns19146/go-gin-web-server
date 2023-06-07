@@ -1,25 +1,44 @@
 <HTML>
     <h2>GameInf</h2>
     <ul>
-        <li>GameName | Date | Location</li>
+        <li>GameID | GameName | Date | Location </li>
         {{range .game}}
-        <li>{{.Gamename}} | {{.Date}}  |  {{.Locate}}</li>
+        <li>{{.GameID}} | {{.GameName}}  |  {{.Date}} | {{.Location}}</li>
         {{end}}
     </ul>
 
     <h2>PlayerInf</h2>
     <ul>
-        <li>Name | Age | Gender | Team | Number | GameName</li>
+        <li>PlayerID | PlayerName | BirthDate | Gender | Team | Number | </li>
         {{range .player}}
-        <li>{{.Name}} | {{.Age}} | {{.Gen}} | {{.Team}} | {{.Number}} | {{.Gamename}}</li>
+        <li>{{.PlayerID}} | {{.PlayerName}} | {{.BirthDate}} | {{.Gender}} | {{.Team}} | {{.Number}}</li>
         {{end}}
+    </ul>
+
+    <h2>Entry_Player_Inf</h2>
+    <ul>
+        <li>GameID | PlayerID |scoreID</li>
+        <li>{{.GameID}} | {{.PlayerID}} | {{.ScoreID}}</li>
     </ul>
 
     <h2>Score</h2>
     <ul>
-        <li>GameName | Number | Distance | XRing | Set | SetScore | DistScore | Total</li>
+        <li>ScoreID | Distance | SetNumber | XRing | Shot1 | Shot2 | Shot3 | Shot4 | Shot5 | Shot6</li>
         {{range .score}}
-        <li>{{.Gamename}} | {{.Number}} | {{.Dist}} | {{.Xring}} | {{.Set}} | {{.SetScore}} | {{.Distscore}} | {{.Total}}</li>
+        <li>{{.ScoreID}}| {{.Distance}} | {{.SetNumber}} | {{.XRing}} | {{.Shot1}} | {{.Shot2}} | {{.Shot3}} | {{.Shot4}} | {{.Shot5}} | {{.Shot6}}</li>
         {{end}}
     </ul>
+
+    type Score struct {
+    ScoreID   int    `gorm:"primary_key; unique" json:"scoreid"`
+    Distance  string `gorm:"varchar(5); primary_key" json:"distance"`
+    SetNumber int    `gorm:"primary_key" json:"setnumber"`
+    XRIng     int    `json:"xring"`
+    Shot1     int    `json:"shot1"`
+    Shot2     int    `json:"shot2"`
+    Shot3     int    `json:"shot3"`
+    Shot4     int    `json:"shot4"`
+    Shot5     int    `json:"shot5"`
+    Shot6     int    `json:"shot6"`
+    }
 </HTML>
