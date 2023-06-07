@@ -1,16 +1,11 @@
 package controller
 
 import (
-	"encoding/csv"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/render-examples/go-gin-web-server/model"
-	"io"
-	"log"
 	"net/http"
-	"strconv"
 )
 
 func dbInit() *gorm.DB {
@@ -19,36 +14,37 @@ func dbInit() *gorm.DB {
 	if err != nil {
 		panic("failed to connect database")
 	}
-	db.SingularTable(true)
 
-	db.AutoMigrate(
-		&model.TestModel{},
-	)
 	return db
 }
 
-func CreateTable(_ *gin.Context) {
-	var game model.Gameinf
-	var player model.Playerinf
+func Migration(_ *gin.Context) {
+	var player model.PlayerInf
+	var game model.GameInf
 	var score model.Score
+	var entry model.EntryPlayerInf
+
 	db := dbInit()
-	db.CreateTable(&game)
+	db.SingularTable(true)
 	db.CreateTable(&player)
-	db.Model(&player).AddForeignKey("gamename", "gameinf(gamename)", "RESTRICT", "RESTRICT")
+	db.CreateTable(&game)
 	db.CreateTable(&score)
-	db.Model(&score).AddForeignKey("gamename", "gameinf(gamename)", "RESTRICT", "RESTRICT")
-	db.Model(&score).AddForeignKey("number", "playerinf(number)", "RESTRICT", "RESTRICT")
+	db.CreateTable(&entry)
+	db.Model(&entry).AddForeignKey("game_id", "game_inf(game_id)", "RESTRICT", "RESTRICT")
+	db.Model(&entry).AddForeignKey("player_id", "player_inf(player_id)", "RESTRICT", "RESTRICT")
+	db.Model(&entry).AddForeignKey("score_id", "score(score_id)", "RESTRICT", "RESTRICT")
 }
 
 func ShowTables(c *gin.Context) {
-	var game []model.Gameinf
-	var player []model.Playerinf
+	var game []model.GameInf
+	var player []model.PlayerInf
+	var entry []model.EntryPlayerInf
 	var score []model.Score
 	db := dbInit()
 	db.Find(&game)
-	fmt.Println(game[0].Gamename)
 	db.Find(&player)
 	db.Find(&score)
+	db.Find(&entry)
 	c.HTML(http.StatusOK, "show.html", gin.H{
 		"game":   game,
 		"player": player,
@@ -56,21 +52,11 @@ func ShowTables(c *gin.Context) {
 	})
 }
 
-func InsertTable(c *gin.Context) {
-	var model model.Score
-	db := dbInit()
-	if err := c.ShouldBindJSON(&model); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error()})
-		return
-	}
-	db.Create(&model)
-}
-
 func UploadCsv(c *gin.Context) {
 	c.HTML(http.StatusOK, "upload.html", nil)
 }
 
+/*
 func OpenCsv(c *gin.Context) {
 	file, _, err := c.Request.FormFile("file")
 	reader := csv.NewReader(file)
