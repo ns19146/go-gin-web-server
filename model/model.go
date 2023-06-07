@@ -5,8 +5,8 @@ import "time"
 type PlayerInf struct {
 	PlayerID   int    `gorm:"primary_key" json:"playerid"`
 	PlayerName string `gorm:"varchar(10)" json:"gamename"`
-	BirthDate  string `gorm:"varchar(10)" json:"birthdate"`
-	Gender     string `gorm:"varchar(5)" json:"gender"`
+	BirthDate  string `gorm:"varchar(20)" json:"birthdate"`
+	Gender     string `gorm:"varchar(10)" json:"gender"`
 	Team       string `gorm:"varchar(20)" json:"team"`
 	Number     string `gorm:"varchar(5)" json:"number"`
 }

@@ -41,6 +41,7 @@ func ShowTables(c *gin.Context) {
 	var entry []model.EntryPlayerInf
 	var score []model.Score
 	db := dbInit()
+	db.SingularTable(true)
 	db.Find(&game)
 	db.Find(&player)
 	db.Find(&score)
