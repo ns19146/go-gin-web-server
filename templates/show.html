@@ -18,7 +18,9 @@
     <h2>Entry_Player_Inf</h2>
     <ul>
         <li>GameID | PlayerID |scoreID</li>
+        {{range .entry}}
         <li>{{.GameID}} | {{.PlayerID}} | {{.ScoreID}}</li>
+        {{end}}
     </ul>
 
     <h2>Score</h2>
@@ -28,17 +30,4 @@
         <li>{{.ScoreID}}| {{.Distance}} | {{.SetNumber}} | {{.XRing}} | {{.Shot1}} | {{.Shot2}} | {{.Shot3}} | {{.Shot4}} | {{.Shot5}} | {{.Shot6}}</li>
         {{end}}
     </ul>
-
-    type Score struct {
-    ScoreID   int    `gorm:"primary_key; unique" json:"scoreid"`
-    Distance  string `gorm:"varchar(5); primary_key" json:"distance"`
-    SetNumber int    `gorm:"primary_key" json:"setnumber"`
-    XRIng     int    `json:"xring"`
-    Shot1     int    `json:"shot1"`
-    Shot2     int    `json:"shot2"`
-    Shot3     int    `json:"shot3"`
-    Shot4     int    `json:"shot4"`
-    Shot5     int    `json:"shot5"`
-    Shot6     int    `json:"shot6"`
-    }
 </HTML>

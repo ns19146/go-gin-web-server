@@ -49,6 +49,7 @@ func ShowTables(c *gin.Context) {
 		"game":   game,
 		"player": player,
 		"score":  score,
+		"entry":  entry,
 	})
 }
 
