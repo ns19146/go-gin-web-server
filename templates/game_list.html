@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CUPID|大会情報編集</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+<h1>登録済大会</h1>
+<form action="./search" method="post">
+    <input type="text" name="game_name" placeholder="編集する大会名を入力してください" required />
+    <input type="submit" value="検索" />
+</form>
+<br>
+<p>検索対象：{{.name}}</p>
+<hr>
+{{range .games}}
+<ul>
+    <li>大会名： {{.GameName}}</li>
+    <li>開催日： {{.Date}}</li>
+    <li>開催地： {{.Location}}</li>
+    <form action="/gameinf/edit" method="POST">
+        <input type="hidden" name="id" value="{{.GameID}}">
+        <input type="submit" value="編集">
+    </form>
+</ul>
+<hr>
+{{end}}
+</body>
+</html>

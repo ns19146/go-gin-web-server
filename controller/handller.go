@@ -171,3 +171,44 @@ func UpdatePlayerInf(c *gin.Context) {
 	db.Where("player_id = ?", id).Save(&player)
 	c.Redirect(http.StatusMovedPermanently, "/playerinf/search")
 }
+
+func ShowGameList(c *gin.Context) {
+	var games []model.GameInf
+	db := dbInit()
+	db.Find(&games)
+	c.HTML(http.StatusOK, "game_list.html", gin.H{
+		"games": games,
+	})
+}
+
+func SearchGameInf(c *gin.Context) {
+	var games []model.GameInf
+	name := c.PostForm("game_name")
+	db := dbInit()
+	db.Where("game_name=?", name).Find(&games)
+	c.HTML(http.StatusOK, "game_list.html", gin.H{
+		"games": games,
+		"name":  name,
+	})
+}
+
+func EditGameInf(c *gin.Context) {
+	var game model.GameInf
+	id, _ := strconv.Atoi(c.PostForm("id"))
+	db := dbInit()
+	db.Where("game_id = ?", id).First(&game)
+	c.HTML(http.StatusOK, "edit_game_inf.html", gin.H{
+		"game": game,
+	})
+}
+
+func UpdateGameInf(c *gin.Context) {
+	var game model.GameInf
+	id, _ := strconv.Atoi(c.PostForm("id"))
+	game.GameName = c.PostForm("name")
+	game.Date = c.PostForm("date")
+	game.Location = c.PostForm("location")
+	db := dbInit()
+	db.Where("game_id = ?", id).Save(&game)
+	c.Redirect(http.StatusMovedPermanently, "/gameinf/search")
+}

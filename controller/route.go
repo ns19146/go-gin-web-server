@@ -21,11 +21,16 @@ func StartWebServer() *gin.Engine {
 	r.POST("/playerinf/insert", InsertPlayerInf)
 	r.GET("/playerinf/search", ShowPlayerList)
 	r.POST("/playerinf/search", SearchPlayerInf)
-	r.POST("playerinf/edit", EditPlayerInf)
+	r.POST("/playerinf/edit", EditPlayerInf)
 	r.POST("/playerinf/update", UpdatePlayerInf)
 	r.GET("/gameinf/insert", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "game_inf.html", nil)
 	})
 	r.POST("/gameinf/insert", InsertGameInf)
+
+	r.GET("/gameinf/search", ShowGameList)
+	r.POST("/gameinf/search", SearchGameInf)
+	r.POST("/gameinf/edit", EditGameInf)
+	r.POST("/gameinf/update", UpdateGameInf)
 	return r
 }

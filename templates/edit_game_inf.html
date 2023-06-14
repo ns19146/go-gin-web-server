@@ -1,10 +1,20 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-
+    <title>CUPID|大会情報編集</title>
+    <meta charset="UTF-8" />
 </head>
 
 <body>
-
+<form action="./update" method="POST">
+    <input type="hidden" name="id" value="{{ .game.GameID }}" />
+    <label>名前：</label>
+    <input type="text" name="name" value="{{ .game.GameName }}" />
+    <label>開催日：</label>
+    <input type="date" name="date" value="{{ .game.Date }}" />
+    <label>開催地</label>
+    <input type="text" name="location" value="{{ .game.Location }}" />
+    <input type="submit" value="登録">
+</form>
 </body>
 </html>
