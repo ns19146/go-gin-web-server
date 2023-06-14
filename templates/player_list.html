@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CUPID|選手情報編集</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>登録済選手</h1>
+    <form action="./search" method="post">
+        <input type="text" name="player_name" placeholder="編集する選手の名前を入力してください" required />
+        <input type="submit" value="検索" />
+    </form>
+    <br>
+    <p>検索対象：{{.name}}</p>
+    <hr>
+    {{range .players}}
+    <ul>
+        <li>名前： {{.PlayerName}}</li>
+        <li>所属： {{.Team}}</li>
+        <li>生年月日： {{.BirthDate}}</li>
+        <li>性別： {{.Gender}}</li>
+        <li>ゼッケン番号： {{.Number}}</li>
+        <form action="/playerinf/edit" method="POST">
+            <input type="hidden" name="id" value="{{.PlayerID}}">
+            <input type="submit" value="編集">
+        </form>
+    </ul>
+    <hr>
+    {{end}}
+</body>
+</html>

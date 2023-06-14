@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>CUPID|選手情報編集</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <form action="./update" method="POST">
+        <input type="hidden" name="id" value="{{ .player.PlayerID }}" />
+        <label>名前：</label>
+        <input type="text" name="name" value="{{ .player.PlayerName }}" />
+        <label>生年月日</label>
+        <input type="date" name="birthdate" value="{{ .player.BirthDate }}" />
+        <label>性別：</label>
+        {{ if eq .player.Gender "male" }}
+        <input type="radio" id="male" name="gender" value="male" checked />
+        <label for="male">男性</label>
+        <input type="radio" id="female" name="gender" value="female" />
+        <label for="female">女性</label>
+        {{ else }}
+        <input type="radio" id="male" name="gender" value="male" />
+        <label for="male">男性</label>
+        <input type="radio" id="female" name="gender" value="female" checked />
+        <label for="female">女性</label>
+        {{ end }}
+        <input type="text" name="team" value="{{ .player.Team }}" />
+        <label>ゼッケン番号：</label>
+        <input type="text" name="number" value="{{ .player.Number }}" />
+        <input type="submit" value="登録" />
+    </form>
+</body>
+</html>

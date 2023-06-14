@@ -1,7 +1,5 @@
 package model
 
-import "time"
-
 type PlayerInf struct {
 	PlayerID   int    `gorm:"primary_key" json:"playerid"`
 	PlayerName string `gorm:"varchar(10)" json:"gamename"`
@@ -12,10 +10,10 @@ type PlayerInf struct {
 }
 
 type GameInf struct {
-	GameID   int       `gorm:"primary_key" json:"id"`
-	GameName string    `gorm:"varchar(50)" json:"gamename"`
-	Date     time.Time `json:"date"`
-	Location string    `gorm:"varchar(30)" json:"location"`
+	GameID   int    `gorm:"primary_key" json:"id"`
+	GameName string `gorm:"varchar(50)" json:"gamename"`
+	Date     string `json:"date"`
+	Location string `gorm:"varchar(30)" json:"location"`
 }
 
 type EntryPlayerInf struct {

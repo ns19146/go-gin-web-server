@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CUPID|選手情報入力</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>選手情報入力画面</h1>
+    <form action="/playerinf/insert" method="POST">
+        <label>選手名</label>
+        <input type="text" name="player_name" placeholder="名前を入力してください" required />
+        <label>大会名</label>
+        <select name="game_name" required>
+            {{range .games}}
+            <option value="{{.GameID}}">{{.GameName}}</option>
+            {{end}}
+        </select>
+        <label>ゼッケン番号</label>
+        <input type="text" name="number" placeholder="ゼッケン番号を入力してください" required />
+        <label>生年月日</label>
+        <input type="date" name="birth_date" placeholder="yyyy/mm/dd">
+        <label>性別</label>
+        <input type="radio" id="male" name="gender" value="male" checked />
+        <lanel for="male">男性</lanel>
+        <input type="radio" id="female" name="gender" value="female" />
+        <lanel for="female">女性</lanel>
+        <label>チーム名</label>
+        <input type="text" name="team" placeholder="チーム名を入力してください">
+        <input type="submit" value="送信" />
+    </form>
+</body>
+</html>
