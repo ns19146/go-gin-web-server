@@ -6,7 +6,6 @@ type PlayerInf struct {
 	BirthDate  string `gorm:"varchar(20)" json:"birthdate"`
 	Gender     string `gorm:"varchar(10)" json:"gender"`
 	Team       string `gorm:"varchar(20)" json:"team"`
-	Number     string `gorm:"varchar(5)" json:"number"`
 }
 
 type GameInf struct {
@@ -17,13 +16,14 @@ type GameInf struct {
 }
 
 type EntryPlayerInf struct {
-	GameID   int `gorm:"primary_key" json:"gameid"`
-	PlayerID int `gorm:"primary_key" json:"playerid"`
-	ScoreID  int `json:"scoreid"`
+	GameID   int    `gorm:"primary_key" json:"gameid"`
+	PlayerID int    `gorm:"primary_key" json:"playerid"`
+	ScoreID  int    `gorm:"primary_key; unique; autoIncrement" json:"scoreid"`
+	Number   string `gorm:"varchar(5)" json:"number"`
 }
 
 type Score struct {
-	ScoreID   int    `gorm:"primary_key; unique" json:"scoreid"`
+	ScoreID   int    `gorm:"primary_key;" json:"scoreid"`
 	Distance  string `gorm:"varchar(5); primary_key" json:"distance"`
 	SetNumber int    `gorm:"primary_key" json:"setnumber"`
 	XRIng     int    `json:"xring"`

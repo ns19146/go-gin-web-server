@@ -34,7 +34,7 @@ func Migration(_ *gin.Context) {
 	db.CreateTable(&entry)
 	db.Model(&entry).AddForeignKey("game_id", "game_inf(game_id)", "RESTRICT", "RESTRICT")
 	db.Model(&entry).AddForeignKey("player_id", "player_inf(player_id)", "RESTRICT", "RESTRICT")
-	db.Model(&entry).AddForeignKey("score_id", "score(score_id)", "RESTRICT", "RESTRICT")
+	db.Model(&score).AddForeignKey("score_id", "entry_player_inf(score_id)", "RESTRICT", "RESTRICT")
 }
 
 func ShowTables(c *gin.Context) {
@@ -103,7 +103,6 @@ func InsertPlayerInf(c *gin.Context) {
 	player.Gender = c.PostForm("gender")
 	player.BirthDate = c.PostForm("birth_date")
 	player.Team = c.PostForm("team")
-	player.Number = c.PostForm("number")
 	db := dbInit()
 	db.Save(&player)
 	c.Redirect(http.StatusMovedPermanently, "/")
@@ -166,7 +165,6 @@ func UpdatePlayerInf(c *gin.Context) {
 	player.BirthDate = c.PostForm("birthdate")
 	player.Gender = c.PostForm("gender")
 	player.Team = c.PostForm("team")
-	player.Number = c.PostForm("number")
 	db := dbInit()
 	db.Where("player_id = ?", id).Save(&player)
 	c.Redirect(http.StatusMovedPermanently, "/playerinf/search")

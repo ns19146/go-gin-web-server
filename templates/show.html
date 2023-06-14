@@ -9,17 +9,17 @@
 
     <h2>PlayerInf</h2>
     <ul>
-        <li>PlayerID | PlayerName | BirthDate | Gender | Team | Number | </li>
+        <li>PlayerID | PlayerName | BirthDate | Gender | Team  </li>
         {{range .player}}
-        <li>{{.PlayerID}} | {{.PlayerName}} | {{.BirthDate}} | {{.Gender}} | {{.Team}} | {{.Number}}</li>
+        <li>{{.PlayerID}} | {{.PlayerName}} | {{.BirthDate}} | {{.Gender}} | {{.Team}}</li>
         {{end}}
     </ul>
 
     <h2>EntryPlayerInf</h2>
     <ul>
-        <li>GameID | PlayerID |scoreID</li>
+        <li>GameID | PlayerID |scoreID | Number</li>
         {{range .entry}}
-        <li>{{.GameID}} | {{.PlayerID}} | {{.ScoreID}}</li>
+        <li>{{.GameID}} | {{.PlayerID}} | {{.ScoreID}} | | {{.Number}}</li>
         {{end}}
     </ul>
 

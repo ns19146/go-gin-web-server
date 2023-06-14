@@ -20,7 +20,6 @@
         <li>所属： {{.Team}}</li>
         <li>生年月日： {{.BirthDate}}</li>
         <li>性別： {{.Gender}}</li>
-        <li>ゼッケン番号： {{.Number}}</li>
         <form action="/playerinf/edit" method="POST">
             <input type="hidden" name="id" value="{{.PlayerID}}">
             <input type="submit" value="編集">
