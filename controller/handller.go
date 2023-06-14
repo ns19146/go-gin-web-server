@@ -205,6 +205,7 @@ func EditGameInf(c *gin.Context) {
 func UpdateGameInf(c *gin.Context) {
 	var game model.GameInf
 	id, _ := strconv.Atoi(c.PostForm("id"))
+	game.GameID = id
 	game.GameName = c.PostForm("name")
 	game.Date = c.PostForm("date")
 	game.Location = c.PostForm("location")
