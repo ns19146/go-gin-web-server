@@ -24,6 +24,10 @@
             <input type="hidden" name="id" value="{{.PlayerID}}">
             <input type="submit" value="編集">
         </form>
+        <form action="/playerinf/delete" method="POST">
+            <input type="hidden" name="id" value="{{.PlayerID}}" />
+            <input type="submit" value="削除" />
+        </form>
     </ul>
     <hr>
     {{end}}
