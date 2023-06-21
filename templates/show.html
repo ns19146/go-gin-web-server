@@ -1,7 +1,8 @@
 <HTML>
+    <h2>主キー：◎ 外部キー(読み込まれる側)：◯ 外部キー(読み込む側)：● </h2>
     <h2>GameInf</h2>
     <ul>
-        <li>GameID | GameName | Date | Location </li>
+        <li>GameID ◎ ◯ | GameName | Date | Location </li>
         {{range .game}}
         <li>{{.GameID}} | {{.GameName}}  |  {{.Date}} | {{.Location}}</li>
         {{end}}
@@ -9,7 +10,7 @@
 
     <h2>PlayerInf</h2>
     <ul>
-        <li>PlayerID | PlayerName | BirthDate | Gender | Team  </li>
+        <li>PlayerID ◎ ◯ | PlayerName | BirthDate | Gender | Team  </li>
         {{range .player}}
         <li>{{.PlayerID}} | {{.PlayerName}} | {{.BirthDate}} | {{.Gender}} | {{.Team}}</li>
         {{end}}
@@ -17,7 +18,7 @@
 
     <h2>EntryPlayerInf</h2>
     <ul>
-        <li>GameID | PlayerID |scoreID | Number</li>
+        <li>GameID ◎  ● | PlayerID ◎ ● |scoreID ◎ ◯ | Number</li>
         {{range .entry}}
         <li>{{.GameID}} | {{.PlayerID}} | {{.ScoreID}} | | {{.Number}}</li>
         {{end}}
@@ -25,7 +26,7 @@
 
     <h2>Score</h2>
     <ul>
-        <li>ScoreID | Distance | SetNumber | XRing | Shot1 | Shot2 | Shot3 | Shot4 | Shot5 | Shot6</li>
+        <li>ScoreID ◎ ◯ | Distance ◎ | SetNumber ◎ | XRing | Shot1 | Shot2 | Shot3 | Shot4 | Shot5 | Shot6</li>
         {{range .score}}
         <li>{{.ScoreID}}| {{.Distance}} | {{.SetNumber}} | {{.XRing}} | {{.Shot1}} | {{.Shot2}} | {{.Shot3}} | {{.Shot4}} | {{.Shot5}} | {{.Shot6}}</li>
         {{end}}
