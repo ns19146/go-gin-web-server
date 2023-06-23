@@ -1,37 +1,79 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-  <meta chsrset="utf-8" />
-  <title>CUPID|スコア入力</title>
+    <title>CUPID|スコア入力</title>
 </head>
 
-
+{{ define "values" }}
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+{{ end }}
 
 <body>
-    <h1>スコア入力ページ</h1>
-    <form action="/score/insert" method="POST" >
+    <h1>スコア入力画面</h1>
+    <form action="score/insert" method="post">
         <label>
             選手名：
-            <select name="playername">
+            <select name="player_name">
                 {{ range .players }}
                 <option value="{{ .PlayerID }}">{{ .PlayerName }}</option>
-                {{ .end }}
+                {{ end }}
             </select>
         </label>
         <label>
             大会名：
-            <select name="gamename">
+            <select name="game_name">
                 {{ range .games }}
                 <option value="{{ .GameID }}">{{ .GameName }}</option>
-                {{end}}
+                {{ end }}
             </select>
         </label>
         <label>
-            １射目：
+            1射目：
             <select name="shot1">
-
+                {{ template "values" }}
+            </select>
+        </label>
+        <label>
+            2射目：
+            <select name="shot1">
+                {{ template "values" }}
+            </select>
+        </label>
+        <label>
+            3射目：
+            <select name="shot1">
+                {{ template "values" }}
+            </select>
+        </label>
+        <label>
+            4射目：
+            <select name="shot1">
+                {{ template "values" }}
+            </select>
+        </label>
+        <label>
+            5射目：
+            <select name="shot1">
+                {{ template "values" }}
+            </select>
+        </label>
+        <label>
+            6射目：
+            <select name="shot1">
+                {{ template "values" }}
             </select>
         </label>
     </form>
 </body>
+
 </html>
