@@ -52,9 +52,12 @@ func StartWebServer() *gin.Engine {
 		game.POST("/delete", DeleteGameInf)
 	}
 
+	//スコア関連
 	score := r.Group("/score")
 	{
-		//score.GET("/search", ShowScoreList)
+		score.GET("/insert", func(c *gin.Context) {
+			c.HTML(http.StatusOK, "score.html", nil)
+		})
 		score.POST("/insert", nil)
 		score.POST("/search", ShowScoreList)
 		score.POST("/edit", nil)
