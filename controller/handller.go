@@ -55,10 +55,6 @@ func ShowTables(c *gin.Context) {
 	})
 }
 
-func UploadCsv(c *gin.Context) {
-	c.HTML(http.StatusOK, "upload.html", nil)
-}
-
 /*
 func OpenCsv(c *gin.Context) {
 	file, _, err := c.Request.FormFile("file")

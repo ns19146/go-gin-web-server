@@ -11,7 +11,9 @@ func StartWebServer() *gin.Engine {
 	//リソース読み込み
 	r.Static("/css", "/assets/css")
 	r.LoadHTMLGlob("templates/*.html")
-
+	r.NoRoute(func(c *gin.Context) {
+		c.HTML(http.StatusNotFound, "404.html", nil)
+	})
 	//index
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
@@ -54,7 +56,7 @@ func StartWebServer() *gin.Engine {
 	{
 		score.GET("/search", nil)
 		score.POST("/insert", nil)
-		score.POST("/search", nil)
+		score.POST("/search", ShowScoreList)
 		score.POST("/edit", nil)
 		score.POST("/update", nil)
 	}

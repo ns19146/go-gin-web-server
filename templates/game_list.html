@@ -27,6 +27,10 @@
         <input type="hidden" name="id" value="{{.GameID}}" />
         <input type="submit" value="削除" />
     </form>
+    <form action="/score/search" method="POST">
+        <input type="hidden" name="id" value="{{.GameID}}" />
+        <input type="submit" value="スコア" />
+    </form>
 </ul>
 <hr>
 {{end}}
