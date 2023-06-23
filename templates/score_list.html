@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CUPID|スコア編集</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <p>編集対象スコア</p>
+    <h2>対象の大会：{{ (index .details 0).GameName }}</h2>
+
+    <hr>
+    {{range .details}}
+    <ul>
+        <li>選手ID：{{ .PlayerID }}</li>
+        <li>選手名：{{ .PlayerName }}</li>
+        <li>スコアID：{{ .ScoreID }}</li>
+        <li>距離：{{ .Distance }}</li>
+        <li>セット：{{ .SetNumber }}</li>
+        <li>Xリング：{{ .XRing }}</li>
+        <li>１射目：{{ .Shot1 }}</li>
+        <li>２射目：{{ .Shot2 }}</li>
+        <li>３射目：{{ .Shot3 }}</li>
+        <li>４射目：{{ .Shot4 }}</li>
+        <li>５射目：{{ .Shot5 }}</li>
+        <li>６射目：{{ .Shot6 }}</li>
+    </ul>
+    <hr>
+    {{ end }}
+</body>
+</html>

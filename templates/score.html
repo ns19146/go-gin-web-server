@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta chsrset="utf-8" />
+  <title>CUPID|スコア入力</title>
+</head>
+
+
+
+<body>
+    <h1>スコア入力ページ</h1>
+    <form action="/score/insert" method="POST" >
+        <label>
+            選手名：
+            <select name="playername">
+                {{ range .players }}
+                <option value="{{ .PlayerID }}">{{ .PlayerName }}</option>
+                {{ .end }}
+            </select>
+        </label>
+        <label>
+            大会名：
+            <select name="gamename">
+                {{ range .games }}
+                <option value="{{ .GameID }}">{{ .GameName }}</option>
+                {{end}}
+            </select>
+        </label>
+        <label>
+            １射目：
+            <select name="shot1">
+
+            </select>
+        </label>
+    </form>
+</body>
+</html>

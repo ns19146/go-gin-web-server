@@ -54,11 +54,19 @@ func StartWebServer() *gin.Engine {
 
 	score := r.Group("/score")
 	{
-		score.GET("/search", nil)
+		//score.GET("/search", ShowScoreList)
 		score.POST("/insert", nil)
 		score.POST("/search", ShowScoreList)
 		score.POST("/edit", nil)
 		score.POST("/update", nil)
+	}
+
+	csv := r.Group("/csv")
+	{
+		csv.GET("/upload", func(c *gin.Context) {
+			c.HTML(http.StatusOK, "upload.html", nil)
+		})
+		csv.POST("/upload", nil)
 	}
 
 	return r
