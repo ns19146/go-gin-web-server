@@ -55,10 +55,8 @@ func StartWebServer() *gin.Engine {
 	//スコア関連
 	score := r.Group("/score")
 	{
-		score.GET("/insert", func(c *gin.Context) {
-			c.HTML(http.StatusOK, "score.html", nil)
-		})
-		score.POST("/insert", nil)
+		score.GET("/insert", ShowScoreForm)
+		score.POST("/insert", InsertScore)
 		score.POST("/search", ShowScoreList)
 		score.POST("/edit", nil)
 		score.POST("/update", nil)

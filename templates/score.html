@@ -20,10 +20,10 @@
 
 <body>
     <h1>スコア入力画面</h1>
-    <form action="score/insert" method="post">
+    <form action="/score/insert" method="post">
         <label>
             選手名：
-            <select name="player_name">
+            <select name="player_id">
                 {{ range .players }}
                 <option value="{{ .PlayerID }}">{{ .PlayerName }}</option>
                 {{ end }}
@@ -31,7 +31,7 @@
         </label>
         <label>
             大会名：
-            <select name="game_name">
+            <select name="game_id">
                 {{ range .games }}
                 <option value="{{ .GameID }}">{{ .GameName }}</option>
                 {{ end }}
@@ -73,6 +73,47 @@
                 {{ template "values" }}
             </select>
         </label>
+        <label>
+            Xリング数：
+            <select name="xring">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </label>
+        <label>距離</label>
+        <label>
+            70-1
+            <input type="radio" name="distance" value="70-1" checked />
+        </label>
+        <label>
+            70-2
+            <input type="radio" name="distance" value="70-2" />
+        </label>
+        <label>
+            50
+            <input type="radio" name="distance" value="50" />
+        </label>
+        <label>
+            30
+            <input type="radio" name="distance" value="30" />
+        </label>
+        <label>
+            セット数：
+            <select name="set">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </label>
+        <input type="submit" value="登録">
     </form>
 </body>
 
